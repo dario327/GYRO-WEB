@@ -26,7 +26,7 @@
         }
         document.getElementById("salar").addEventListener("click",onClick);
         function onClick() {
-            if (typeof DeviceMotionEvent.requestPermission === 'function') {
+            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
                 // Handle iOS 13+ devices.
                 DeviceMotionEvent.requestPermission()
                 .then((state) => {
@@ -49,6 +49,12 @@
 
             document.getElementById("caja").style.translate(cordX,cordY);
         }
+
+
+
+
+
+
 
 
 
