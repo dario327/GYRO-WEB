@@ -16,32 +16,32 @@
 </head>
 <body>
     <div id="caja"></div>
-
+    <button id="salar">Permirit</BUtton>
 
     <script>
         window.addEventListener('deviceorientation', handleOrientation);
 
         function handleOrientation(event) {
-        document.getElementById("caja").innerHTML = event.alpha+" "+event.beta+" "+event.gamma;
-    }
-
-    function onClick() {
-  if (typeof DeviceMotionEvent.requestPermission === 'function') {
-    // Handle iOS 13+ devices.
-    DeviceMotionEvent.requestPermission()
-      .then((state) => {
-        if (state === 'granted') {
-          window.addEventListener('devicemotion', handleOrientation);
-        } else {
-          console.error('Request to access the orientation was rejected');
+            document.getElementById("caja").innerHTML = event.alpha+" "+event.beta+" "+event.gamma;
         }
-      })
-      .catch(console.error);
-  } else {
-    // Handle regular non iOS 13+ devices.
-    window.addEventListener('devicemotion', handleOrientation);
-  }
-}
+        document.getElementById("salar").addEventListener("click",onClick);
+        function onClick() {
+            if (typeof DeviceMotionEvent.requestPermission === 'function') {
+                // Handle iOS 13+ devices.
+                DeviceMotionEvent.requestPermission()
+                .then((state) => {
+                    if (state === 'granted') {
+                        window.addEventListener('devicemotion', handleOrientation);
+                    } else {
+                        console.error('Request to access the orientation was rejected');
+                    }
+                })
+                .catch(console.error);
+            } else {
+                // Handle regular non iOS 13+ devices.
+                window.addEventListener('devicemotion', handleOrientation);
+            }
+        }
 
 
 
