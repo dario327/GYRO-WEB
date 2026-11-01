@@ -19,48 +19,38 @@
     <button id="salar">Permirit</BUtton>
 
     <script>
-document.getElementById("salar").addEventListener("click", onClick);
+        window.addEventListener('deviceorientation', handleOrientation);
 
-function onClick() {
-    if (typeof DeviceOrientationEvent.requestPermission === "function") {
-
-        DeviceOrientationEvent.requestPermission()
-        .then(state => {
-            if (state === "granted") {
-                window.addEventListener(
-                    "deviceorientation",
-                    handleOrientation
-                );
+        function handleOrientation(event) {
+            document.getElementById("caja").innerHTML = event.alpha+" "+event.beta+" "+event.gamma;
+            mover(event);
+        }
+        document.getElementById("salar").addEventListener("click",onClick);
+        function onClick() {
+            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                // Handle iOS 13+ devices.
+                DeviceOrientationEvent.requestPermission()
+                .then((state) => {
+                    if (state === 'granted') {
+                        window.addEventListener("deviceorientation", handleOrientation);
+                    } else {
+                        console.error('Request to access the orientation was rejected');
+                    }
+                })
+                .catch(console.error);
+            } else {
+                // Handle regular non iOS 13+ devices.
+                window.addEventListener('deviceorientation', handleOrientation);
             }
-        })
-        .catch(console.error);
+        }
 
-    } else {
-        window.addEventListener(
-            "deviceorientation",
-            handleOrientation
-        );
-    }
-}
+        function mover(e){
+            let cordX = e.beta * 3;
+            let cordY = e.gamma * 3;
 
-function handleOrientation(event) {
+            document.getElementById("caja").style.transform =  translate(`${cordX}px, ${cordY}px`)
+        }
 
-    document.getElementById("caja").innerHTML =
-        Math.round(event.alpha) + " " +
-        Math.round(event.beta) + " " +
-        Math.round(event.gamma);
-
-    mover(event);
-}
-
-function mover(e) {
-
-    let cordX = e.gamma * 3;
-    let cordY = e.beta * 3;
-
-    document.getElementById("caja").style.transform =
-        `translate(${cordX}px, ${cordY}px)`;
-}
-</script>
+    </script>
 </body>
 </html>
