@@ -15,7 +15,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%);
+            
             border-radius: 100px;
         }
         #angulos{
@@ -44,10 +44,10 @@
             let cordY = evento.gamma;
 
             document.getElementById("angulos").innerHTML = `Alfa: ${evento.alpha}<br>Beta: ${cordX}<br>Gamma: ${cordY}`;
-            document.getElementById("caja").style.transform = `translate(${cordY*3}px, ${cordX*3}px)`;
+            //document.getElementById("caja").style.transform = `translate(${cordY*3}px, ${cordX*3}px)`;
             const caja = document.getElementById("caja");
-            //caja.style.top = `${cordX*3}px`;
-            //caja.style.left = `${cordY*3}px`;
+            caja.style.top = `${cordX*3}px`;
+            caja.style.left = `${cordY*3}px`;
         }
 
         function onClick() {
