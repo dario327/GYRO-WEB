@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GYRO-WEB</title>
+    <style>
+        #caja{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            position: absolute;
+            top: 8%;
+        }
+    </style>
+</head>
+<body>
+    <button id="btnPermitir">Permitir</button>
+    <p id="angulos"></p>
+    <div id="caja"></div>
+
+    <script>
+        window.addEventListener('deviceorientation', handleOrientation);
+        
+        function mover(evento){
+            let cordX = evento.beta;
+            let cordY = evento.gamma;
+
+            document.getElementById("angulos").innerHTML = `Alfa: ${evento.alpha}<br>Beta: ${cordX}<br>Gamma: ${cordY}`;
+            document.getElementById("caja").style.transform = `traslate(${cordX}px, ${cordY}px)`;
+        }
+
+        function onClick() {
+            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                // Handle iOS 13+ devices.
+                DeviceOrientationEvent.requestPermission()
+                .then((state) => {
+                    if (state === 'granted') {
+                        window.addEventListener('deviceorientation',mover);
+                    } else {
+                        console.error('Request to access the orientation was rejected');
+                    }
+                })
+                .catch(console.error);
+            } else {
+                // Handle regular non iOS 13+ devices.
+                window.addEventListener('deviceorientation', mover);
+            }
+        }
+
+        document.getElementById("btnPermitir").addEventListener("click",onClick);
+
+    </script>
+</body>
+</html>
