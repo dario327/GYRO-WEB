@@ -3,15 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>GYRO-WEB</title>
     <style>
+        body{
+            background-color: beige;
+        }
         #caja{
             width: 200px;
             height: 200px;
-            background-color: aqua;
+            background-color: aquamarine;
             position: absolute;
             top: 50%;
             left: 50%;
+            border-radius: 100px;
+        }
+        #angulos{
+            font-family: 'Courier New', Courier, monospace;
+        }
+        #btnPermitir{
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            text-transform: uppercase;
+            border-width: 0;
+            color: white;
+            background-color: grey;
         }
     </style>
 </head>
@@ -28,7 +43,7 @@
             let cordY = evento.gamma;
 
             document.getElementById("angulos").innerHTML = `Alfa: ${evento.alpha}<br>Beta: ${cordX}<br>Gamma: ${cordY}`;
-            document.getElementById("caja").style.transform = `translate(${cordX}px, ${cordY}px)`;
+            document.getElementById("caja").style.transform = `translate(${cordY}px, ${cordX}px)`;
         }
 
         function onClick() {
@@ -50,7 +65,6 @@
         }
 
         document.getElementById("btnPermitir").addEventListener("click",onClick);
-
     </script>
 </body>
 </html>
