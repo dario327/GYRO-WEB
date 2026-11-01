@@ -23,15 +23,16 @@
 
         function handleOrientation(event) {
             document.getElementById("caja").innerHTML = event.alpha+" "+event.beta+" "+event.gamma;
+            mover();
         }
         document.getElementById("salar").addEventListener("click",onClick);
         function onClick() {
             if (typeof DeviceOrientationEvent.requestPermission === 'function') {
                 // Handle iOS 13+ devices.
-                DeviceMotionEvent.requestPermission()
+                DeviceOrientationEvent.requestPermission()
                 .then((state) => {
                     if (state === 'granted') {
-                        window.addEventListener('devicemotion', handleOrientation);
+                        window.addEventListener("deviceorientation", handleOrientation);
                     } else {
                         console.error('Request to access the orientation was rejected');
                     }
@@ -39,25 +40,16 @@
                 .catch(console.error);
             } else {
                 // Handle regular non iOS 13+ devices.
-                window.addEventListener('devicemotion', handleOrientation);
+                window.addEventListener('deviceorientation', handleOrientation);
             }
         }
 
         function mover(e){
-            let cordX = e.alpha;
-            let cordY = e.beta;
+            let cordX = e.beta * 3;
+            let cordY = e.gamma * 3;
 
-            document.getElementById("caja").style.translate(cordX,cordY);
+            document.getElementById("caja").style.transform =  translate(`${cordX}px, ${cordY}px`)
         }
-
-
-
-
-
-
-
-
-
 
     </script>
 </body>
