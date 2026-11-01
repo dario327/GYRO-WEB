@@ -45,8 +45,8 @@
             document.getElementById("angulos").innerHTML = `Alfa: ${evento.alpha}<br>Beta: ${cordX}<br>Gamma: ${cordY}`;
             //document.getElementById("caja").style.transform = `translate(${cordY*3}px, ${cordX*3}px)`;
             const caja = document.getElementById("caja");
-            caja.style.top = `${cordY*3}px`;
-            caja.style.left = `${cordX*3}px`;
+            caja.style.top = `${cordX*3}px`;
+            caja.style.left = `${cordY*3}px`;
         }
 
         function onClick() {
