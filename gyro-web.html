@@ -10,7 +10,8 @@
             height: 200px;
             background-color: aqua;
             position: absolute;
-            top: 8%;
+            top: 50%;
+            left: 50%;
         }
     </style>
 </head>
@@ -20,14 +21,14 @@
     <div id="caja"></div>
 
     <script>
-        window.addEventListener('deviceorientation', handleOrientation);
+        window.addEventListener('deviceorientation',mover);
         
         function mover(evento){
             let cordX = evento.beta;
             let cordY = evento.gamma;
 
             document.getElementById("angulos").innerHTML = `Alfa: ${evento.alpha}<br>Beta: ${cordX}<br>Gamma: ${cordY}`;
-            document.getElementById("caja").style.transform = `traslate(${cordX}px, ${cordY}px)`;
+            document.getElementById("caja").style.transform = `translate(${cordX}px, ${cordY}px)`;
         }
 
         function onClick() {
