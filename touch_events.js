@@ -52,9 +52,57 @@ window.addEventListener("touchend",(e)=>{
 });
 */
 //4 Multitouch
+var p1inicio = [], p2inicio = [], p1final = [], p2final = [];
 window.addEventListener("touchstart",e=>{
     if (e.touches.length === 2){
-        alert("Has tocado con los dos dedos");
-    }
-})
+        console.log("Has usado los dos dedos");
+        
+        //Dedo 1
+        let xO = e.touches[0].clientX;
+        let yO = e.touches[0].clientY;
+        p1inicio.push(xO,yO);
 
+        //Dedo 2
+        xO = e.touches[1].clientX;
+        yO = e.touches[1].clientY;
+        p2inicio.push(xO,yO);
+    }
+});
+window.addEventListener("touchstart",e=>{
+    if (e.touches.length === 2){
+        console.log("Has usado los dos dedos");
+        
+        //Dedo 1
+        let xO = e.touches[0].clientX;
+        let yO = e.touches[0].clientY;
+        p1inicio.push(xO,yO);
+
+        //Dedo 2
+        xO = e.touches[1].clientX;
+        yO = e.touches[1].clientY;
+        p2inicio.push(xO,yO);
+    }
+});
+window.addEventListener("touchmove",e=>{
+    if (e.touches.length === 2){
+        console.log("Has usado los dos dedos");
+        
+        //Dedo 1
+        let xO = e.changedTouches[0].clientX;
+        let yO = e.changedTouches[0].clientY;
+        p1final.push(xO,yO);
+
+        //Dedo 2
+        xO = e.changedTouches[1].clientX;
+        yO = e.changedTouches[1].clientY;
+        p2final.push(xO,yO);
+
+        var d1 = Math.sqrt(Math.pow((p1final[0] - p1inicio[0]),2) + Math.pow((p1final[1] - p1inicio[1]),2));
+        var d2 = Math.sqrt(Math.pow((p2final[0] - p2inicio[0]),2) + Math.pow((p2final[1] - p2inicio[1]),2));
+        if (d1 > 0 || d2 > 0){
+            document.getElementById("divImagen").style.transform = `scale(2)`;
+        } else if(d1 < 0 || d2 < 0){
+            document.getElementById("divImagen").style.transform = `scale(0.5)`;
+        }
+    }
+});
