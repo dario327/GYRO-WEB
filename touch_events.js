@@ -84,9 +84,9 @@ window.addEventListener("touchmove",e=>{
 
         let escala = dF/dO;
         if (dF > dO){
-            document.getElementById("divImagen").style.transform = "scale("+escala+")";
+            document.getElementById("divImagen").style.transform = "scale(3)";
         } else if (dF < dO){
-            document.getElementById("divImagen").style.transform = "scale("+escala+")";
+            document.getElementById("divImagen").style.transform = "scale(0.5)";
         }
     }
 });
