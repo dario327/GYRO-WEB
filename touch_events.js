@@ -24,8 +24,8 @@ window.addEventListener("touchmove",e=>{
         let y1 = e.touches[0].clientY;
 
         //Dedo 2
-        let x2 = e.touches[0].clientX;
-        let y2 = e.touches[0].clientY;
+        let x2 = e.touches[1].clientX;
+        let y2 = e.touches[1].clientY;
 
         dF = Math.sqrt(Math.pow((x2-x1),2)+Math.pow((y2-y1),2));
 
