@@ -30,9 +30,9 @@ window.addEventListener("touchmove",e=>{
         dF = Math.sqrt(Math.pow((x2-x1),2)+Math.pow((y2-y1),2));
 
         if (dF > dO){
-            document.getElementById("divImagen").style.transform = "scale(2)";
+            document.getElementById("img").style.transform = "scale(2)";
         } else if (dF < dO){
-            document.getElementById("divImagen").style.transform = "scale(0.5)";
+            document.getElementById("img").style.transform = "scale(0.5)";
         }
     }
 });
